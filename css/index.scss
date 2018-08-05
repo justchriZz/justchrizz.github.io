@@ -51,7 +51,7 @@ header {
 				}
 
 				ul {
-					display: inherit
+					max-height: 100vh
 				}
 			}
 		}
@@ -109,11 +109,12 @@ header {
 	}
 
 	ul {
-		padding-top: 1em;
 		height: 100vh;
+		max-height: 0;
 		text-align: right;
 		list-style: none;
-		display: none;
+		overflow: hidden;
+		transition: max-height .2s ease-in-out;
 
 		a {
 			padding: .3em 50% .3em 0;
@@ -134,51 +135,9 @@ header {
 		}
 	}
 
-	/*margin-bottom: 2em;
-	padding: .5em 0;
-	position: fixed;
-	width: 100%;
-	background: rgba($color__background, .5);
-	-webkit-backdrop-filter: blur(20px);
-	backdrop-filter: blur(20px);
-
-	nav {
-		margin: 0 auto;
-		max-width: $size__width-default;
-		font-size: .875em;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		user-select: none
+	li:first-child {
+		margin-top: 1em
 	}
-
-	ul {
-		float: right;
-		list-style: none;
-		display: flex;
-	}
-
-	li {
-		padding: 0 1em;
-
-		a {
-			position: relative;
-
-			&:hover:after {
-				background-image: url('/images/plus_active.svg');
-				transform: scale(1.2)
-			}
-
-			&:after {
-				padding-left: .5em;
-				position: absolute;
-				width: 12px;
-				height: 100%;
-				content: "";
-				background: url('/images/plus.svg') no-repeat center center;
-				transition: transform .1s ease-in-out
-			}
-		}
-	}*/
 }
 
 main {
@@ -229,6 +188,84 @@ main {
 }
 
 @media (min-width: 1025px) {
+	header {
+		margin-bottom: 2em;
+		padding: .5em 0;
+		position: fixed;
+		width: 100%;
+		background: rgba($color__background, .5);
+		-webkit-backdrop-filter: blur(20px);
+		backdrop-filter: blur(20px);
+
+		nav {
+			margin: 0 auto;
+			max-width: $size__width-default;
+			font-size: .875em;
+			text-align: left;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+
+			& > a {
+				margin: 0;
+				padding: 0;
+				display: inline-block;
+
+				span {
+					transition: all .2s ease-in-out
+				}
+
+				&:hover span {
+					color: $color__pink
+				}
+			}
+		}
+
+		label {
+			display: none
+		}
+
+		ul {
+			float: right;
+			padding: 0;
+			height: auto;
+			max-height: initial;
+			line-height: 1;
+			list-style: none;
+			display: flex;
+		}
+
+		li {
+			padding: 0 1em;
+
+			&:first-child {
+				margin: 0
+			}
+
+			a {
+				padding: 0;
+				position: relative;
+				width: initial;
+				box-sizing: border-box;
+
+				&:hover:after {
+					background-image: url('/images/plus_active.svg');
+					transform: scale(1.2)
+				}
+
+				&:after {
+					padding-left: .5em;
+					position: absolute;
+					width: 12px;
+					height: 100%;
+					content: "";
+					background: url('/images/plus.svg') no-repeat center center;
+					transition: transform .1s ease-in-out
+				}
+			}
+		}
+	}
+
 	main {
 		figcaption {
 			margin: 0
